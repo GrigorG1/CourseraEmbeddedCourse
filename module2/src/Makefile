@@ -48,8 +48,9 @@ CFLAGS = -Wall \
 			-Werror \
 			-g \
 			-O0 \
-			-std=c99
-LDFLAGS = -Wl,-Map=$(TARGET).map -save-temps
+			-std=c99 \
+			-save-temps
+LDFLAGS = -Wl,-Map=$(TARGET).map
 SIZE = size
 
 # Platform Specific Flags
@@ -87,7 +88,7 @@ build: $(TARGET).out
 $(TARGET).out: $(OBJS)
 	$(CC) $(OBJS) $(CPPFLAGS) $(CFLAGS) $(LDFLAGS) -o $@
 	$(SIZE) $@
-	rm -f *.i *.s
+	rm -f *.i
 
 %.i: %.c
 	$(CC) -E $< $(CPPFLAGS) $(CFLAGS) -o $@
@@ -97,10 +98,11 @@ $(TARGET).out: $(OBJS)
 
 %.o: %.c
 	$(CC) -c $< $(CPPFLAGS) $(CFLAGS) -o $@
+	../include/exec
 
 .PHONY: compile-all
 compile-all: $(OBJS)
 
 .PHONY: clean
-clean: 
+clean:
 	rm -f *.out *.i *.asm *.s *.o *.d *.map

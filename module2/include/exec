@@ -1,0 +1,1 @@
+for file in *.s; do name="${file%.*}"; cp $file ${name}.asm; done
