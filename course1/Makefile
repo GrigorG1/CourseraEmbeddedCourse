@@ -41,6 +41,7 @@ include sources.mk
 PLATFORM = HOST
 
 # Flags for all platforms/defaults
+SRCDIR = src
 TARGET = c1m2
 CC = gcc
 CPPFLAGS = -DHOST $(INCLUDES) -MD -MP
@@ -61,17 +62,17 @@ ifeq ($(PLATFORM),MSP432) # MSP432 specific options
 	SOURCES += ./interrupts_msp432p401r_gcc.c \
 				./startup_msp432p401r_gcc.c \
 				./system_msp432p401r.c
-	INCLUDES += -I../include/CMSIS \
-					-I../include/msp432
+	INCLUDES += -I./include/CMSIS \
+				-I./include/msp432
 	CPPFLAGS = -DMSP432 $(INCLUDES) -MD -MP
 	CFLAGS += -mcpu=$(CPU) \
 				-mthumb \
 				-march=$(ARCH) \
 				-mfloat-abi=hard \
-				-mfpu=fpv4-sp-d16 \
-				--specs=nosys.specs
+			-mfpu=fpv4-sp-d16 \
+			--specs=nosys.specs
 	LD = arm-none-eabi-ld
-	LINKER_FILE = ../msp432p401r.lds
+	LINKER_FILE = ./msp432p401r.lds
 	LDFLAGS += -T $(LINKER_FILE)
 	SIZE = arm-none-eabi-size
 else
@@ -90,15 +91,15 @@ $(TARGET).out: $(OBJS)
 	$(SIZE) $@
 	rm -f *.i
 
-%.i: %.c
+%.i: $(SRCDIR)/%.c
 	$(CC) -E $< $(CPPFLAGS) $(CFLAGS) -o $@
 
-%.asm: %.c
+%.asm: $(SRCDIR)/%.c
 	$(CC) -S $< $(CPPFLAGS) $(CFLAGS) -o $@
 
-%.o: %.c
-	$(CC) -c $< $(CPPFLAGS) $(CFLAGS) -o $@
-	../include/exec
+%.o: $(SRCDIR)/%.c
+	$(CC) -c $< $(CPPFLAGS) $(CFLAGS) -o $@;
+	./include/exec
 
 .PHONY: compile-all
 compile-all: $(OBJS)
