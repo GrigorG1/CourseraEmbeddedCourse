@@ -13,7 +13,7 @@
 # links them together and creates a final output executable. It supports two
 # platforms; the host environment and the target embedded system MSP432. The
 #
-# Use: make [TARGET] [PLATFORM-OVERRIDES]
+# Use: make [TARGET] [PLATFORM-OVERRIDES] [COURSE-OVERRIDES]
 #
 # Build Targets:
 # 		<FILE>.i - 		Generates the preprocessed output of all c-program
@@ -34,11 +34,17 @@
 #		PLATFORM - 		Supports two platforms; the host environment and the
 #						target embedded system MSP432 (HOST, MSP432)
 #
+# Course Overrides
+#		COURSE -		Supports 2 courses; COURSE1 for course1 assignment
+#						and if empty it means the stats assignment from
+#						module 1
+#
 #------------------------------------------------------------------------------
 include sources.mk
 
 # Platform Overrides
 PLATFORM = HOST
+COURSE = COURSE1
 
 # Flags for all platforms/defaults
 SRCDIR = src
@@ -69,8 +75,8 @@ ifeq ($(PLATFORM),MSP432) # MSP432 specific options
 				-mthumb \
 				-march=$(ARCH) \
 				-mfloat-abi=hard \
-			-mfpu=fpv4-sp-d16 \
-			--specs=nosys.specs
+				-mfpu=fpv4-sp-d16 \
+				--specs=nosys.specs
 	LD = arm-none-eabi-ld
 	LINKER_FILE = ./msp432p401r.lds
 	LDFLAGS += -T $(LINKER_FILE)
@@ -79,6 +85,10 @@ else
 	# Defaults are already set for HOST platform, but in the future improve this
 	# to be more user friendly e.g. if no matching platoform write a message
 	# that HOST is used or something better
+endif
+
+ifeq ($(COURSE),COURSE1)
+	CPPFLAGS += -DCOURSE1
 endif
 
 OBJS = $(SOURCES:.c=.o)
