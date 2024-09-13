@@ -91,91 +91,96 @@ void set_all(char * ptr, char value, unsigned int size);
 void clear_all(char * ptr, unsigned int size);
 
 /**
- * @brief Moves source to destination 
+ * @brief Moves source to destination
  *
- * This function takes two byte pointers (one source and one destination) 
- * and a length of bytes to move from the source location to the 
+ * This function takes two byte pointers (one source and one destination)
+ * and a length of bytes to move from the source location to the
  * destination.
  *
  * @param src - Pointer to source address start
  * @param dst - Pointer to destination address start
  * @param length - Length of bytes to move
-*
+ *
  * @return Pointer to destination
  */
 uint8_t *my_memmove(uint8_t *src, uint8_t *dst, size_t length);
 
 /**
- * @brief Returns a value of a data array 
+ * @brief Copies source to destination
  *
- * Given a pointer to a char data set, this will read the provided
- * index into that data set and return the value.
+ * This function takes two byte pointers (one source and one destination)
+ * and a length of bytes to copy from the source location to the
+ * destination. The behavior is undefined if there is overlap of source
+ * and destination. Copy should still occur, but will likely corrupt
+ * your data.
  *
- * @param ptr Pointer to data array
- * @param index Index into pointer array to set value
+ * @param src - Pointer to source address start
+ * @param dst - Pointer to destination address start
+ * @param length - Length of bytes
  *
- * @return Value to be read.
+ * @return Pointer to destination
  */
-uint8_t * my_memcopy(uint8_t * src, uint8_t * dst, size_t length);
+uint8_t *my_memcopy(uint8_t *src, uint8_t *dst, size_t length);
 
 /**
- * @brief Returns a value of a data array 
+ * @brief Sets all locations to the given value
  *
- * Given a pointer to a char data set, this will read the provided
- * index into that data set and return the value.
+ * This should take a pointer to a source memory location, a length in
+ * bytes and set all locations of that memory to a given value.
  *
- * @param ptr Pointer to data array
- * @param index Index into pointer array to set value
+ * @param src - Pointer to source address start
+ * @param length - Length of bytes
+ * @param value - Value to set each location to
  *
- * @return Value to be read.
+ * @return Pointer to source
  */
+uint8_t *my_memset(uint8_t *src, size_t length, uint8_t value);
 
 /**
- * @brief Returns a value of a data array 
+ * @brief Zeros out all of the memory
  *
- * Given a pointer to a char data set, this will read the provided
- * index into that data set and return the value.
+ * Takes a pointer to a memory location, a length in bytes and zeros out
+ * all of the memory.
  *
- * @param ptr Pointer to data array
- * @param index Index into pointer array to set value
+ * @param src - Pointer to source address start
+ * @param length - Length of bytes
  *
- * @return Value to be read.
+ * @return Pointer to source
  */
+uint8_t *my_memzero(uint8_t *src, size_t length);
 
 /**
- * @brief Returns a value of a data array 
+ * @brief Reverses the order of all of the bytes
  *
- * Given a pointer to a char data set, this will read the provided
- * index into that data set and return the value.
+ * Takes a pointer to a memory location and a length in bytes and reverses
+ * the order of all of the bytes.
  *
- * @param ptr Pointer to data array
- * @param index Index into pointer array to set value
+ * @param src - Pointer to source address start
+ * @param length - Number of bytes
  *
- * @return Value to be read.
+ * @return Pointer to memory if successful or a Null pointer if not
  */
+uint8_t *my_reverse(uint8_t *src, size_t length);
 
 /**
- * @brief Returns a value of a data array 
+ * @brief Allocates a number of words in dynamic memory
  *
- * Given a pointer to a char data set, this will read the provided
- * index into that data set and return the value.
+ * Takes a number of words to allocate in dynamic memory
  *
- * @param ptr Pointer to data array
- * @param index Index into pointer array to set value
+ * @param length - Length of bytes to reserve
  *
- * @return Value to be read.
+ * @return Pointer to source
  */
+int32_t *reserve_words(size_t length);
 
 /**
- * @brief Returns a value of a data array 
+ * @brief Frees memory allocation
  *
- * Given a pointer to a char data set, this will read the provided
- * index into that data set and return the value.
+ * Frees a dynamic memory allocation by providing the pointer src
+ * to the function
  *
- * @param ptr Pointer to data array
- * @param index Index into pointer array to set value
- *
- * @return Value to be read.
+ * @param src - Pointer to the source
  */
+void free_words(int32_t *src);
 
 #endif /* __MEMORY_H__ */
