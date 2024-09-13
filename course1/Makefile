@@ -13,7 +13,7 @@
 # links them together and creates a final output executable. It supports two
 # platforms; the host environment and the target embedded system MSP432. The
 #
-# Use: make [TARGET] [PLATFORM-OVERRIDES] [COURSE-OVERRIDES]
+# Use: make [TARGET] [PLATFORM-OVERRIDES] [COURSE-OVERRIDES] [VERBOSE-OVERRIDES]
 #
 # Build Targets:
 # 		<FILE>.i - 		Generates the preprocessed output of all c-program
@@ -34,10 +34,12 @@
 #		PLATFORM - 		Supports two platforms; the host environment and the
 #						target embedded system MSP432 (HOST, MSP432)
 #
-# Course Overrides
+# Other Overrides
 #		COURSE -		Supports 2 courses; COURSE1 for course1 assignment
 #						and if empty it means the stats assignment from
-#						module 1
+#						module 1.
+#		VERBOSEEN - 	Supports 2 options; VERBOSE for enabled debug printing
+#						and empty for disabled debug printing.
 #
 #------------------------------------------------------------------------------
 include sources.mk
@@ -45,6 +47,7 @@ include sources.mk
 # Platform Overrides
 PLATFORM = HOST
 COURSE = COURSE1
+VERBOSEEN = VERBOSE
 
 # Flags for all platforms/defaults
 SRCDIR = src
@@ -52,11 +55,11 @@ TARGET = c1m2
 CC = gcc
 CPPFLAGS = -DHOST $(INCLUDES) -MD -MP
 CFLAGS = -Wall \
-			-Werror \
-			-g \
-			-O0 \
-			-std=c99 \
-			-save-temps
+					-Werror \
+					-g \
+					-O0 \
+					-std=c99 \
+					-save-temps
 LDFLAGS = -Wl,-Map=$(TARGET).map
 SIZE = size
 
@@ -66,17 +69,17 @@ ifeq ($(PLATFORM),MSP432) # MSP432 specific options
 	CPU = cortex-m4
 	ARCH = armv7e-m
 	SOURCES += ./interrupts_msp432p401r_gcc.c \
-				./startup_msp432p401r_gcc.c \
-				./system_msp432p401r.c
+							./startup_msp432p401r_gcc.c \
+							./system_msp432p401r.c
 	INCLUDES += -I./include/CMSIS \
-				-I./include/msp432
+							-I./include/msp432
 	CPPFLAGS = -DMSP432 $(INCLUDES) -MD -MP
 	CFLAGS += -mcpu=$(CPU) \
-				-mthumb \
-				-march=$(ARCH) \
-				-mfloat-abi=hard \
-				-mfpu=fpv4-sp-d16 \
-				--specs=nosys.specs
+						-mthumb \
+						-march=$(ARCH) \
+						-mfloat-abi=hard \
+						-mfpu=fpv4-sp-d16 \
+						--specs=nosys.specs
 	LD = arm-none-eabi-ld
 	LINKER_FILE = ./msp432p401r.lds
 	LDFLAGS += -T $(LINKER_FILE)
@@ -89,6 +92,10 @@ endif
 
 ifeq ($(COURSE),COURSE1)
 	CPPFLAGS += -DCOURSE1
+endif
+
+ifeq ($(VERBOSEEN),VERBOSE)
+	CPPFLAGS += -DVERBOSE
 endif
 
 OBJS = $(SOURCES:.c=.o)

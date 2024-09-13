@@ -23,33 +23,37 @@
  *
  */
 
-#include <stdio.h>
+//#include <stdio.h>
 #include <stdlib.h>
+#include <platform.h>
 #include "stats.h"
 
 /* Size of the Data Set */
 #define SIZE (40)
 
-void main()
+int main()
 {
-	unsigned char test[SIZE] = { 34, 201, 190, 154,   8, 194,   2,   6,
-                                114, 88,   45,  76, 123,  87,  25,  23,
-                                200, 122, 150, 90,   92,  87, 177, 244,
-                                201,   6,  12,  60,   8,   2,   5,  67,
-                                  7,  87, 250, 230,  99,   3, 100,  90};
+	#ifdef VERBOSE
+		unsigned char test[SIZE] = { 34, 201, 190, 154,   8, 194,   2,   6,
+	                              114, 88,   45,  76, 123,  87,  25,  23,
+	                              200, 122, 150, 90,   92,  87, 177, 244,
+	                              201,   6,  12,  60,   8,   2,   5,  67,
+	                                7,  87, 250, 230,  99,   3, 100,  90};
 
-  	/* Other Variable Declarations Go Here */
-   	/* Statistics and Printing Functions Go Here */
-	printf( "Array at the beginning:\n"
-			"-----------------------\n" );
-	print_array( SIZE, test );
-	printf( "\n" );
-	print_statistics( SIZE, test );
-	printf( "\n\nReordering the array from large to small..." );
-	sort_array( SIZE, test );
-	printf( "Done!\n\nCurrent array:\n"
-				   "--------------\n" );
-	print_array( SIZE, test );
+	  	/* Other Variable Declarations Go Here */
+	   	/* Statistics and Printing Functions Go Here */
+		PRINTF( "Array at the beginning:\n"
+	 					"-----------------------\n" );
+		print_array( SIZE, test );
+		PRINTF( "\n" );
+		print_statistics( SIZE, test );
+		PRINTF( "\n\nReordering the array from large to small..." );
+		sort_array( SIZE, test );
+		PRINTF( "Done!\n\nCurrent array:\n"
+		        "--------------\n" );
+		print_array( SIZE, test );
+	#endif
+	return 0;
 }
 
 /* Add other Implementation File Code Here */
@@ -70,18 +74,18 @@ void print_statistics( unsigned int size, unsigned char *array )
 				 array_mean = find_mean( size, array ),
 				 array_median = find_median( size, array );
 
-	printf( "Array statistics:\n"
-			"-----------------\n"
-			"The minimum value is: %u\nThe maximum value is: %u\nThe mean value is: %u\nThe median value is: %u\n", array_min, array_max, array_mean, array_median );
+	PRINTF( "Array statistics:\n"
+					"-----------------\n"
+					"The minimum value is: %u\nThe maximum value is: %u\nThe mean value is: %u\nThe median value is: %u\n", array_min, array_max, array_mean, array_median );
 }
 
 void print_array( unsigned int size, unsigned char *array )
 {
 	for ( size_t i = 0; i < size; ++i )
 	{
-		printf( "%4d", array[i] );
+		PRINTF( "%4d", array[i] );
 		if( ( i + 1 ) % 8 == 0 )
-			printf( "\n" );
+			PRINTF( "\n" );
 	}
 }
 

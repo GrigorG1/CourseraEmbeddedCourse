@@ -90,4 +90,92 @@ void set_all(char * ptr, char value, unsigned int size);
  */
 void clear_all(char * ptr, unsigned int size);
 
+/**
+ * @brief Moves source to destination 
+ *
+ * This function takes two byte pointers (one source and one destination) 
+ * and a length of bytes to move from the source location to the 
+ * destination.
+ *
+ * @param src - Pointer to source address start
+ * @param dst - Pointer to destination address start
+ * @param length - Length of bytes to move
+*
+ * @return Pointer to destination
+ */
+uint8_t *my_memmove(uint8_t *src, uint8_t *dst, size_t length);
+
+/**
+ * @brief Returns a value of a data array 
+ *
+ * Given a pointer to a char data set, this will read the provided
+ * index into that data set and return the value.
+ *
+ * @param ptr Pointer to data array
+ * @param index Index into pointer array to set value
+ *
+ * @return Value to be read.
+ */
+uint8_t * my_memcopy(uint8_t * src, uint8_t * dst, size_t length);
+
+/**
+ * @brief Returns a value of a data array 
+ *
+ * Given a pointer to a char data set, this will read the provided
+ * index into that data set and return the value.
+ *
+ * @param ptr Pointer to data array
+ * @param index Index into pointer array to set value
+ *
+ * @return Value to be read.
+ */
+
+/**
+ * @brief Returns a value of a data array 
+ *
+ * Given a pointer to a char data set, this will read the provided
+ * index into that data set and return the value.
+ *
+ * @param ptr Pointer to data array
+ * @param index Index into pointer array to set value
+ *
+ * @return Value to be read.
+ */
+
+/**
+ * @brief Returns a value of a data array 
+ *
+ * Given a pointer to a char data set, this will read the provided
+ * index into that data set and return the value.
+ *
+ * @param ptr Pointer to data array
+ * @param index Index into pointer array to set value
+ *
+ * @return Value to be read.
+ */
+
+/**
+ * @brief Returns a value of a data array 
+ *
+ * Given a pointer to a char data set, this will read the provided
+ * index into that data set and return the value.
+ *
+ * @param ptr Pointer to data array
+ * @param index Index into pointer array to set value
+ *
+ * @return Value to be read.
+ */
+
+/**
+ * @brief Returns a value of a data array 
+ *
+ * Given a pointer to a char data set, this will read the provided
+ * index into that data set and return the value.
+ *
+ * @param ptr Pointer to data array
+ * @param index Index into pointer array to set value
+ *
+ * @return Value to be read.
+ */
+
 #endif /* __MEMORY_H__ */
