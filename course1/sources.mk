@@ -11,7 +11,10 @@
 
 # Add your Source files to this variable
 SOURCES = ./main.c \
-	  		./memory.c
+					./course1.c \
+					./data.c \
+					./memory.c \
+					./stats.c
 
 # Add your include paths to this variable
 INCLUDES = -I./include/common

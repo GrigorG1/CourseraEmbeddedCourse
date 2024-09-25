@@ -9,20 +9,19 @@
  *
  *****************************************************************************/
 /**
- * @file <Add File Name> 
- * @brief <Add Brief Description Here >
+ * @file stats.h
+ * @brief Header file for stats.c
  *
- * <Add Extended Description Here>
+ * Defines several functions for finding statistics for a few common
+ * areas
  *
- * @author <Add FirsName LastName>
- * @date <Add date >
+ * @author Grigor Georgiev
+ * @date 2024.09.25
  *
  */
 #ifndef __STATS_H__
 #define __STATS_H__
-
-/* Add Your Declarations and Function Comments here */ 
-
+#include <stdint.h>
 /**
  * @brief A function that prints statistics
  *
@@ -45,7 +44,9 @@ void print_statistics( unsigned int size, unsigned char *array );
  *
  * @return
  */
-void print_array( unsigned int size, unsigned char *array );
+//void print_array( unsigned int size, unsigned char *array );
+
+void print_array( uint8_t size, uint8_t *array );
 
 /**
  * @brief Finds the median value

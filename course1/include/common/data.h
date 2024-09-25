@@ -18,8 +18,8 @@
  *
  */
 #include <stdint.h>
-#ifndef __STATS_H__
-#define __STATS_H__
+#ifndef __DATA_H__
+#define __DATA_H__
 
 /**
  * @brief A function that converts an integer to an ASCII string

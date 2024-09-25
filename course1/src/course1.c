@@ -17,12 +17,12 @@
  *
  */
 
+#include "stats.h"
 #include <stdint.h>
 #include "course1.h"
 #include "platform.h"
 #include "memory.h"
 #include "data.h"
-#include "stats.h"
 
 int8_t test_data1() {
   uint8_t * ptr;
@@ -38,7 +38,7 @@ int8_t test_data1() {
     return TEST_ERROR;
   }
 
-  digits = my_itoa( num, ptr, BASE_16);   
+  digits = my_itoa( num, ptr, BASE_16);
   value = my_atoi( ptr, digits, BASE_16);
   #ifdef VERBOSE
   PRINTF("  Initial number: %d\n", num);
@@ -106,9 +106,9 @@ int8_t test_memmove1() {
     set[i] = i;
   }
 
-  print_array(set, MEM_SET_SIZE_B);
+  print_array( MEM_SET_SIZE_B, set );
   my_memmove(ptra, ptrb, TEST_MEMMOVE_LENGTH);
-  print_array(set, MEM_SET_SIZE_B);
+  print_array( MEM_SET_SIZE_B, set );
 
   for (i = 0; i < TEST_MEMMOVE_LENGTH; i++)
   {
@@ -144,9 +144,9 @@ int8_t test_memmove2() {
     set[i] = i;
   }
 
-  print_array(set, MEM_SET_SIZE_B);
+  print_array( MEM_SET_SIZE_B, set );
   my_memmove(ptra, ptrb, TEST_MEMMOVE_LENGTH);
-  print_array(set, MEM_SET_SIZE_B);
+  print_array( MEM_SET_SIZE_B, set );
 
   for (i = 0; i < TEST_MEMMOVE_LENGTH; i++)
   {
@@ -183,9 +183,9 @@ int8_t test_memmove3() {
     set[i] = i;
   }
 
-  print_array(set, MEM_SET_SIZE_B);
+  print_array( MEM_SET_SIZE_B, set );
   my_memmove(ptra, ptrb, TEST_MEMMOVE_LENGTH);
-  print_array(set, MEM_SET_SIZE_B);
+  print_array( MEM_SET_SIZE_B, set );
 
   for (i = 0; i < TEST_MEMMOVE_LENGTH; i++)
   {
@@ -223,9 +223,9 @@ int8_t test_memcopy() {
     set[i] = i;
   }
 
-  print_array(set, MEM_SET_SIZE_B);
+  print_array( MEM_SET_SIZE_B, set );
   my_memcopy(ptra, ptrb, TEST_MEMMOVE_LENGTH);
-  print_array(set, MEM_SET_SIZE_B);
+  print_array( MEM_SET_SIZE_B, set );
 
   for (i = 0; i < TEST_MEMMOVE_LENGTH; i++)
   {
@@ -262,11 +262,11 @@ int8_t test_memset()
     set[i] = i;
   }
 
-  print_array(set, MEM_SET_SIZE_B);
+  print_array( MEM_SET_SIZE_B, set );
   my_memset(ptra, MEM_SET_SIZE_B, 0xFF);
-  print_array(set, MEM_SET_SIZE_B);
+  print_array( MEM_SET_SIZE_B, set );
   my_memzero(ptrb, MEM_ZERO_LENGTH);
-  print_array(set, MEM_SET_SIZE_B);
+  print_array( MEM_SET_SIZE_B, set );
   
   /* Validate Set & Zero Functionality */
   for (i = 0; i < MEM_ZERO_LENGTH; i++)
@@ -305,9 +305,9 @@ int8_t test_reverse()
   
   my_memcopy(set, copy, MEM_SET_SIZE_B);
 
-  print_array(set, MEM_SET_SIZE_B);
+  print_array( MEM_SET_SIZE_B, set );
   my_reverse(set, MEM_SET_SIZE_B);
-  print_array(set, MEM_SET_SIZE_B);
+  print_array( MEM_SET_SIZE_B, set );
 
   for (i = 0; i < MEM_SET_SIZE_B; i++)
   {

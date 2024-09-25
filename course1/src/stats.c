@@ -23,7 +23,6 @@
  *
  */
 
-//#include <stdio.h>
 #include <stdlib.h>
 #include <platform.h>
 #include "stats.h"
@@ -31,7 +30,7 @@
 /* Size of the Data Set */
 #define SIZE (40)
 
-int main()
+/*int main()
 {
 	#ifdef VERBOSE
 		unsigned char test[SIZE] = { 34, 201, 190, 154,   8, 194,   2,   6,
@@ -40,8 +39,6 @@ int main()
 	                              201,   6,  12,  60,   8,   2,   5,  67,
 	                                7,  87, 250, 230,  99,   3, 100,  90};
 
-	  	/* Other Variable Declarations Go Here */
-	   	/* Statistics and Printing Functions Go Here */
 		PRINTF( "Array at the beginning:\n"
 	 					"-----------------------\n" );
 		print_array( SIZE, test );
@@ -55,6 +52,7 @@ int main()
 	#endif
 	return 0;
 }
+*/
 
 /* Add other Implementation File Code Here */
 int compare( const void *a, const void *b )
@@ -79,7 +77,18 @@ void print_statistics( unsigned int size, unsigned char *array )
 					"The minimum value is: %u\nThe maximum value is: %u\nThe mean value is: %u\nThe median value is: %u\n", array_min, array_max, array_mean, array_median );
 }
 
-void print_array( unsigned int size, unsigned char *array )
+/*void print_array( unsigned int size, unsigned char *array )
+{
+	for ( size_t i = 0; i < size; ++i )
+	{
+		PRINTF( "%4d", array[i] );
+		if( ( i + 1 ) % 8 == 0 )
+			PRINTF( "\n" );
+	}
+}
+*/
+
+void print_array( uint8_t size, uint8_t *array )
 {
 	for ( size_t i = 0; i < size; ++i )
 	{
