@@ -37,4 +37,19 @@
  */
 uint8_t my_itoa(int32_t data, uint8_t * ptr, uint32_t base);
 
+/**
+ * @brief A function that converts an ASCII string to an integer
+ *
+ * A function that converts data back from an ASCII represented string into an
+ * integer type. It supports bases 2 to 16 by specifying the integer value of
+ * the base you wish to convert to (base).
+ *
+ * @param ptr - String containing the ASCII input
+ * @param digits - Number of digits in the input
+ * @param base - Radix of the converted number
+ *
+ * @return The converted 32-bit signed interger
+ */
+int32_t my_atoi( uint8_t *ptr, uint8_t digits, uint32_t base );
+
 #endif /* __STATS_H__ */
