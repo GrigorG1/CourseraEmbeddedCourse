@@ -52,23 +52,38 @@ void clear_all(char * ptr, unsigned int size){
 uint8_t *my_memmove(uint8_t *src, uint8_t *dst, size_t length)
 {
 	//Check if overlap occurs and if so, reallocate the dst
-	if( src + length >= dst )
-		dst = ( uint8_t * )realloc( dst, length );
+PRINTF( "1 in my_memmove *src=%hu, *dst=%hu, src=%p, dst=%p, \
+length=%lu, src+len=%p, sizeof( *src )=%lu, sizeof( *dst )=%lu\n", \
+*src, *dst, src, dst, length, src + length, sizeof( *src ), sizeof( *dst ) );
+	if( sizeof( *src ) < length )
+	{
+PRINTF( "2-------------\n" );
+		src = realloc( src, length );
+	}
+PRINTF( "3-------------\n" );
+	if( sizeof( *dst ) < length )
+	{
+PRINTF( "4-------------\n" );
+		dst = realloc( dst, length );
+	}
+
+PRINTF( "2 in my_memmove *src=%hu, *dst=%hu, src=%p, dst=%p, length=%lu\n", *src, *dst, src, dst, length );
 	if( dst == NULL )
 	{
 		PRINTF( "In my_memmove: cannot reallocate memory for dst, nothing done.\n" );
 		return NULL;
 	}
+PRINTF( "3 in my_memmove *src=%hu, *dst=%hu, src=%p, dst=%p, length=%lu\n", *src, *dst, src, dst, length );
 	for( size_t i = 0; i < length; ++i )
 		*( dst + i ) = *( src + i );
-	free( src );
+PRINTF( "4 in my_memmove *src=%hu, *dst=%hu, src=%p, dst=%p, length=%lu\n", *src, *dst, src, dst, length );
 	return dst;
 }
 
 uint8_t *my_memcopy(uint8_t *src, uint8_t *dst, size_t length)
 {
 	//Check if overlap occurs and if so, try to reallocate the dst
-	if( src + length >= dst )
+	if( src + length > dst )
 		dst = ( uint8_t * )realloc( dst, length );
 	if( dst == NULL )
 	{
@@ -115,12 +130,12 @@ uint8_t *my_reverse(uint8_t *src, size_t length)
 	return src;
 }
 
-int32_t *reserve_words(size_t length)
+int32_t *reserve_words( size_t length )
 {
 	return ( int32_t * )malloc( length * sizeof( int32_t ) );
 }
 
-void free_words(uint32_t *src)
+void free_words( int32_t *src )
 {
 	free( src );
 }

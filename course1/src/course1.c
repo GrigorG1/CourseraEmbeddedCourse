@@ -44,7 +44,7 @@ int8_t test_data1() {
   PRINTF("  Initial number: %d\n", num);
   PRINTF("  Final Decimal number: %d\n", value);
   #endif
-  free_words( (uint32_t*)ptr );
+  free_words( (int32_t*)ptr );
 
   if ( value != num )
   {
@@ -73,12 +73,14 @@ int8_t test_data2() {
   PRINTF("  Initial Decimal number: %d\n", num);
   PRINTF("  Final Decimal number: %d\n", value);
   #endif
-  free_words( (uint32_t*)ptr );
+  free_words( (int32_t*)ptr );
 
   if ( value != num )
   {
+PRINTF( "returning ERROR\n" );
     return TEST_ERROR;
   }
+PRINTF( "returning OK\n" );
   return TEST_NO_ERROR;
 }
 
@@ -96,10 +98,10 @@ int8_t test_memmove1() {
   {
     return TEST_ERROR;
   }
-  
+
   ptra = &set[0];
   ptrb = &set[16];
-  
+
   /* Initialize the set to test values */
   for( i = 0; i < MEM_SET_SIZE_B; i++)
   {
@@ -118,7 +120,7 @@ int8_t test_memmove1() {
     }
   }
 
-  free_words( (uint32_t*)set );
+  free_words( (int32_t*)set );
   return ret;
 }
 
@@ -129,7 +131,7 @@ int8_t test_memmove2() {
   uint8_t * ptra;
   uint8_t * ptrb;
 
-  PRINTF("test_memmove2() -OVERLAP END OF SRC BEGINNING OF DST\n");
+  PRINTF("test_memmove2() - OVERLAP END OF SRC BEGINNING OF DST\n");
   set = (uint8_t*) reserve_words(MEM_SET_SIZE_W);
 
   if (! set )
@@ -156,7 +158,7 @@ int8_t test_memmove2() {
     }
   }
 
-  free_words( (uint32_t*)set );
+  free_words( (int32_t*)set );
   return ret;
 }
 
@@ -196,7 +198,7 @@ int8_t test_memmove3() {
   }
 
 
-  free_words( (uint32_t*)set );
+  free_words( (int32_t*)set );
   return ret;
 
 }
@@ -235,7 +237,7 @@ int8_t test_memcopy() {
     }
   }
 
-  free_words( (uint32_t*)set );
+  free_words( (int32_t*)set );
   return ret;
 }
 
@@ -281,7 +283,7 @@ int8_t test_memset()
     }
   }
   
-  free_words( (uint32_t*)set );
+  free_words( (int32_t*)set );
   return ret;
 }
 
@@ -317,7 +319,7 @@ int8_t test_reverse()
     }
   }
 
-  free_words( (uint32_t*)copy );
+  free_words( (int32_t*)copy );
   return ret;
 }
 
