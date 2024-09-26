@@ -59,7 +59,7 @@ int8_t test_data2() {
   uint32_t digits;
   int32_t value;
 
-  PRINTF("test_data2():\n");
+  PRINTF("test_data2();\n");
   ptr = (uint8_t*) reserve_words( DATA_SET_SIZE_W );
 
   if (! ptr )
@@ -89,7 +89,7 @@ int8_t test_memmove1() {
   uint8_t * ptra;
   uint8_t * ptrb;
 
-  PRINTF("test_memmove1() - NO OVERLAP\n");
+  PRINTF("test_memmove1() - NO OVERLAP;\n");
   set = (uint8_t*) reserve_words( MEM_SET_SIZE_W );
 
   if (! set )
@@ -129,7 +129,7 @@ int8_t test_memmove2() {
   uint8_t * ptra;
   uint8_t * ptrb;
 
-  PRINTF("test_memmove2() - OVERLAP END OF SRC BEGINNING OF DST\n");
+  PRINTF("test_memmove2() - OVERLAP END OF SRC BEGINNING OF DST;\n");
   set = (uint8_t*) reserve_words(MEM_SET_SIZE_W);
 
   if (! set )
@@ -167,7 +167,7 @@ int8_t test_memmove3() {
   uint8_t * ptra;
   uint8_t * ptrb;
 
-  PRINTF("test_memove3() - OVERLAP END OF DEST BEGINNING OF SRC\n");
+  PRINTF("test_memove3() - OVERLAP END OF DEST BEGINNING OF SRC;\n");
   set = (uint8_t*)reserve_words( MEM_SET_SIZE_W);
 
   if (! set ) 
@@ -207,7 +207,7 @@ int8_t test_memcopy() {
   uint8_t * ptra;
   uint8_t * ptrb;
 
-  PRINTF("test_memcopy()\n");
+  PRINTF("test_memcopy();\n");
   set = (uint8_t*) reserve_words(MEM_SET_SIZE_W);
 
   if (! set ) 
@@ -246,7 +246,7 @@ int8_t test_memset()
   uint8_t * ptra;
   uint8_t * ptrb;
 
-  PRINTF("test_memset()\n");
+  PRINTF("test_memset();\n");
   set = (uint8_t*)reserve_words(MEM_SET_SIZE_W);
   if (! set )
   {
@@ -295,13 +295,13 @@ int8_t test_reverse()
                                  0x20, 0x24, 0x7C, 0x20, 0x24, 0x69, 0x68, 0x54
                                };
 
-  PRINTF("test_reverse()\n");
+  PRINTF("test_reverse();\n");
   copy = (uint8_t*)reserve_words(MEM_SET_SIZE_W);
   if (! copy )
   {
     return TEST_ERROR;
   }
-  
+
   my_memcopy(set, copy, MEM_SET_SIZE_B);
 
   print_array( MEM_SET_SIZE_B, set );
@@ -316,12 +316,11 @@ int8_t test_reverse()
     }
   }
 
-PRINTF( "-------------ret=%hd\n", ret );
   free_words( (int32_t*)copy );
   return ret;
 }
 
-void course1(void) 
+void course1(void)
 {
   uint8_t i;
   int8_t failed = 0;
@@ -336,7 +335,7 @@ void course1(void)
   results[6] = test_memset();
   results[7] = test_reverse();
 
-  for ( i = 0; i < TESTCOUNT; i++) 
+  for ( i = 0; i < TESTCOUNT; i++)
   {
     failed += results[i];
   }

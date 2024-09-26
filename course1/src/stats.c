@@ -90,12 +90,14 @@ void print_statistics( unsigned int size, unsigned char *array )
 
 void print_array( uint8_t size, uint8_t *array )
 {
+	#ifdef VERBOSE
 	for ( size_t i = 0; i < size; ++i )
 	{
 		PRINTF( "%4d", array[i] );
 		if( ( i + 1 ) % 8 == 0 )
 			PRINTF( "\n" );
 	}
+	#endif
 }
 
 unsigned int find_median( unsigned int size, unsigned char *array )

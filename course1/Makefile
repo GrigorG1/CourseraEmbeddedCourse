@@ -35,11 +35,11 @@
 #						target embedded system MSP432 (HOST, MSP432)
 #
 # Other Overrides
-#		COURSE -		Supports 2 courses; COURSE1 for course1 assignment
+#		COURSE -		Supports 2 courses; COURSE1 (default) for course1 assignment
 #						and if empty it means the stats assignment from
 #						module 1.
 #		VERBOSEEN - 	Supports 2 options; VERBOSE for enabled debug printing
-#						and empty for disabled debug printing.
+#						and empty (default) for disabled debug printing.
 #
 #------------------------------------------------------------------------------
 include sources.mk
@@ -47,7 +47,7 @@ include sources.mk
 # Platform Overrides
 PLATFORM = HOST
 COURSE = COURSE1
-VERBOSEEN = VERBOSE
+VERBOSEEN =
 
 # Flags for all platforms/defaults
 SRCDIR = src

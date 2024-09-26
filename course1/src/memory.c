@@ -51,27 +51,17 @@ void clear_all(char * ptr, unsigned int size){
 
 uint8_t *my_memmove(uint8_t *src, uint8_t *dst, size_t length)
 {
-	//Check if overlap occurs and if so, reallocate the dst
-PRINTF( "1 in my_memmove *src=%hu, *dst=%hu, src=%p, dst=%p,\
-length=%lu, src+len=%p, sizeof( src )=%lu, sizeof( dst )=%lu\n",
-*src, *dst, src, dst, length, src + length, sizeof( src ), sizeof( dst ) );
-
 	if( src < dst )
 	{
-PRINTF( "3 in my_memmove *src=%hu, *dst=%hu, src=%p, dst=%p, length=%lu\n", *src, *dst, src, dst, length );
 		for( int i = length - 1; i >= 0; --i )
 		{
 			*( dst + i ) = *( src + i );
-PRINTF( "----3.5 i=%d, *(dst+i)=%hu, *(src+i)=%hu\n", i, *( dst + i ), *( src + i ) );
 		}
-PRINTF( "4 in my_memmove *src=%hu, *dst=%hu, src=%p, dst=%p, length=%lu\n", *src, *dst, src, dst, length );
 	}
 	else
 	{
-PRINTF( "5 in my_memmove *src=%hu, *dst=%hu, src=%p, dst=%p, length=%lu\n", *src, *dst, src, dst, length );
 		for( size_t i = 0; i < length; ++i )
 			*( dst + i ) = *( src + i );
-PRINTF( "6 in my_memmove *src=%hu, *dst=%hu, src=%p, dst=%p, length=%lu\n", *src, *dst, src, dst, length );
 	}
 
 	return dst;
@@ -117,7 +107,8 @@ uint8_t *my_memzero(uint8_t *src, size_t length)
 
 uint8_t *my_reverse(uint8_t *src, size_t length)
 {
-	uint8_t *p1 = src, *p2 = src + length, pt;
+	uint8_t *p1 = src, *p2 = src + length - 1, pt = 0;
+
 	while( p1 < p2 )
 	{
 		pt = *p2;
