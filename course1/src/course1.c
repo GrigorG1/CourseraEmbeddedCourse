@@ -77,10 +77,8 @@ int8_t test_data2() {
 
   if ( value != num )
   {
-PRINTF( "returning ERROR\n" );
     return TEST_ERROR;
   }
-PRINTF( "returning OK\n" );
   return TEST_NO_ERROR;
 }
 
@@ -94,7 +92,7 @@ int8_t test_memmove1() {
   PRINTF("test_memmove1() - NO OVERLAP\n");
   set = (uint8_t*) reserve_words( MEM_SET_SIZE_W );
 
-  if (! set ) 
+  if (! set )
   {
     return TEST_ERROR;
   }
@@ -197,7 +195,6 @@ int8_t test_memmove3() {
     }
   }
 
-
   free_words( (int32_t*)set );
   return ret;
 
@@ -269,7 +266,7 @@ int8_t test_memset()
   print_array( MEM_SET_SIZE_B, set );
   my_memzero(ptrb, MEM_ZERO_LENGTH);
   print_array( MEM_SET_SIZE_B, set );
-  
+
   /* Validate Set & Zero Functionality */
   for (i = 0; i < MEM_ZERO_LENGTH; i++)
   {
@@ -282,7 +279,7 @@ int8_t test_memset()
       ret = TEST_ERROR;
     }
   }
-  
+
   free_words( (int32_t*)set );
   return ret;
 }
@@ -319,6 +316,7 @@ int8_t test_reverse()
     }
   }
 
+PRINTF( "-------------ret=%hd\n", ret );
   free_words( (int32_t*)copy );
   return ret;
 }

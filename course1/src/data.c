@@ -48,15 +48,15 @@ uint8_t no_of_digits( int32_t num, uint32_t radix )
 uint8_t my_itoa( int32_t data, uint8_t *ptr, uint32_t base )
 {
 	uint8_t digit_count = no_of_digits( data, base );
-printf( "-------START data=%d, *ptr='%s', base=%u, digit_count=%hu\n", \
-data, ptr, base, digit_count );
+//printf( "-------START data=%d, *ptr='%s', base=%u, digit_count=%hu\n",
+//data, ptr, base, digit_count );
   if( data == 0 )
   {
     *ptr = '0';
     return 0;
   }
-printf( "-------2 START data=%d, *ptr='%s', base=%u, digit_count=%hu\n", \
-data, ptr, base, digit_count );
+//printf( "-------2 START data=%d, *ptr='%s', base=%u, digit_count=%hu\n",
+//data, ptr, base, digit_count );
 
   if( data == -2147483648 )
   {
@@ -68,44 +68,44 @@ data, ptr, base, digit_count );
 			*( ptr + i ) = '0';
 		return digit_count;
   }
-printf( "-------3 START data=%d, *ptr='%s', base=%u, digit_count=%hu\n", \
-data, ptr, base, digit_count );
+//printf( "-------3 START data=%d, *ptr='%s', base=%u, digit_count=%hu\n",
+//data, ptr, base, digit_count );
 
-	if( sizeof( ptr ) < digit_count + 2 )
+	if( sizeof( ptr ) < digit_count )
 	{
-		printf( "Ptr size (%lu bytes) is less than the required (%hu bytes), \
-nothing done and returning 0.\n", sizeof( ptr ), digit_count + 2 );
+//		printf( "Ptr size (%lu bytes) is less than the required (%hu bytes),
+//nothing done and returning 0.\n", sizeof( ptr ), digit_count );
 		return 0;
 	}
-printf( "-------4 START data=%d, *ptr='%s', base=%u, digit_count=%hu\n", \
-data, ptr, base, digit_count );
+//printf( "-------4 START data=%d, *ptr='%s', base=%u, digit_count=%hu\n",
+//data, ptr, base, digit_count );
 
   if( data < 0 )
 	{
 		data = -1 * data;
 		*ptr = '-';
 	}
-printf( "-------5 START data=%d, *ptr='%s', base=%u, digit_count=%hu\n", \
-data, ptr, base, digit_count );
+//printf( "-------5 START data=%d, *ptr='%s', base=%u, digit_count=%hu\n",
+//data, ptr, base, digit_count );
 
   *( ptr + digit_count - 1 ) = '\0';
-printf( "-------6 START data=%d, *ptr='%s', base=%u, digit_count=%hu\n", \
-data, ptr, base, digit_count );
+//printf( "-------6 START data=%d, *ptr='%s', base=%u, digit_count=%hu\n",
+//data, ptr, base, digit_count );
 
 	uint8_t digit_temp = digit_count;
   while( data > 0 )
   {
-printf( "-------7 START data=%d, *ptr='%s', base=%u, digit_count=%hu, digit_temp=%hu\n", \
-data, ptr, base, digit_count, digit_temp );
+//printf( "-------7 START data=%d, *ptr='%s', base=%u, digit_count=%hu, digit_temp=%hu\n",
+//data, ptr, base, digit_count, digit_temp );
 
     *( ptr + digit_temp - 2 ) = data % base + '0';
     data /= base;
     digit_temp--;
-printf( "-------8 START data=%d, *ptr='%s', base=%u, digit_count=%hu, digit_temp=%hu\n", \
-data, ptr, base, digit_count, digit_temp );
+//printf( "-------8 START data=%d, *ptr='%s', base=%u, digit_count=%hu, digit_temp=%hu\n",
+//data, ptr, base, digit_count, digit_temp );
   }
-printf( "-------END data=%d, *ptr='%s', base=%u, digit_count=%hu\n", \
-data, ptr, base, digit_count );
+//printf( "-------END data=%d, *ptr='%s', base=%u, digit_count=%hu\n",
+//data, ptr, base, digit_count );
   return digit_count;
 }
 
